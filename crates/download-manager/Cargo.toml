@@ -14,3 +14,9 @@ database.workspace = true
 common-structs.workspace = true
 
 log = "0.4.20"
+
+#  --- YT Download ---
+rusty_ytdl = { git = "https://github.com/Mithronn/rusty_ytdl/", branch = "main", features = ["rustls", "search", "live"], default-features = false, optional = true }
+
+[features]
+rusty-ytdl-backend = ["dep:rusty_ytdl"]
