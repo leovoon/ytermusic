@@ -125,6 +125,9 @@ impl SoundAction {
                 }
             }
             Self::DeleteVideoUnary => {
+                if player.list.is_empty() {
+                    return;
+                }
                 let index_list = player.list_selector.get_relative_position();
                 let video = player.relative_current(index_list).cloned().unwrap();
                 if matches!(
@@ -166,6 +169,9 @@ impl SoundAction {
                 }
             }
             Self::ReplaceQueue(videos) => {
+                if videos.is_empty() {
+                    return;
+                }
                 player.list.truncate(player.current + 1);
                 DOWNLOAD_MANAGER.clean(
                     ShutdownSignal,
